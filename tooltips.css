@@ -1,0 +1,44 @@
+@import "theme";
+@import "css3";
+@import "easing";
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+
+  -webkit-transform: translateY(-5px);
+
+  @include transition( (opacity .2s $easeInOutQuad, -webkit-transform .2s $easeInOutQuad) );
+
+  &.visible {
+    opacity: 1;
+
+    -webkit-transform: translateY(0);
+    @include transition( (opacity .2s $easeInOutQuad .3s, -webkit-transform .2s $easeInOutQuad .3s) );
+  }
+
+  .message {
+    margin: 0;
+    padding: .25em .5em;
+
+    font-size: .8rem;
+    color: #fff;
+    @include border-radius(3px);
+    background: rgba(0,0,0,0.75);
+
+    &:after {
+      content: '';
+
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      left: 50%;
+      bottom: -1em;
+      margin-left: -0.5em;
+
+      border: solid 0.5em;
+      border-color: rgba(0,0,0,0.75) transparent transparent;
+    }
+  }
+}
